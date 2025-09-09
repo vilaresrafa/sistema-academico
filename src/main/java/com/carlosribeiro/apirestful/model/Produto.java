@@ -1,12 +1,17 @@
 package com.carlosribeiro.apirestful.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import lombok.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+
+@NoArgsConstructor
+@Getter
+@Setter
+@ToString
+
+//@Data // get, set, toString, hashCode, equals
 
 @Entity
 public class Produto {
@@ -21,15 +26,16 @@ public class Produto {
     private int qtdEstoque;
     private BigDecimal preco;
     private LocalDate dataCadastro;
-    private String categoria;
+    @ManyToOne
+    private Categoria categoria;
 
-    public Produto() {
-
-    }
+//    public Produto() {
+//
+//    }
 
     public Produto(String imagem, String nome, String slug,
                    String descricao, boolean disponivel, int qtdEstoque,
-                   BigDecimal preco, LocalDate dataCadastro, String categoria) {
+                   BigDecimal preco, LocalDate dataCadastro, Categoria categoria) {
         this.imagem = imagem;
         this.nome = nome;
         this.slug = slug;
@@ -41,83 +47,83 @@ public class Produto {
         this.categoria = categoria;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getImagem() {
-        return imagem;
-    }
-
-    public void setImagem(String imagem) {
-        this.imagem = imagem;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public String getSlug() {
-        return slug;
-    }
-
-    public void setSlug(String slug) {
-        this.slug = slug;
-    }
-
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
-
-    public boolean isDisponivel() {
-        return disponivel;
-    }
-
-    public void setDisponivel(boolean disponivel) {
-        this.disponivel = disponivel;
-    }
-
-    public int getQtdEstoque() {
-        return qtdEstoque;
-    }
-
-    public void setQtdEstoque(int qtdEstoque) {
-        this.qtdEstoque = qtdEstoque;
-    }
-
-    public BigDecimal getPreco() {
-        return preco;
-    }
-
-    public void setPreco(BigDecimal preco) {
-        this.preco = preco;
-    }
-
-    public LocalDate getDataCadastro() {
-        return dataCadastro;
-    }
-
-    public void setDataCadastro(LocalDate dataCadastro) {
-        this.dataCadastro = dataCadastro;
-    }
-
-    public String getCategoria() {
-        return categoria;
-    }
-
-    public void setCategoria(String categoria) {
-        this.categoria = categoria;
-    }
+//    public Long getId() {
+//        return id;
+//    }
+//
+//    public void setId(Long id) {
+//        this.id = id;
+//    }
+//
+//    public String getImagem() {
+//        return imagem;
+//    }
+//
+//    public void setImagem(String imagem) {
+//        this.imagem = imagem;
+//    }
+//
+//    public String getNome() {
+//        return nome;
+//    }
+//
+//    public void setNome(String nome) {
+//        this.nome = nome;
+//    }
+//
+//    public String getSlug() {
+//        return slug;
+//    }
+//
+//    public void setSlug(String slug) {
+//        this.slug = slug;
+//    }
+//
+//    public String getDescricao() {
+//        return descricao;
+//    }
+//
+//    public void setDescricao(String descricao) {
+//        this.descricao = descricao;
+//    }
+//
+//    public boolean isDisponivel() {
+//        return disponivel;
+//    }
+//
+//    public void setDisponivel(boolean disponivel) {
+//        this.disponivel = disponivel;
+//    }
+//
+//    public int getQtdEstoque() {
+//        return qtdEstoque;
+//    }
+//
+//    public void setQtdEstoque(int qtdEstoque) {
+//        this.qtdEstoque = qtdEstoque;
+//    }
+//
+//    public BigDecimal getPreco() {
+//        return preco;
+//    }
+//
+//    public void setPreco(BigDecimal preco) {
+//        this.preco = preco;
+//    }
+//
+//    public LocalDate getDataCadastro() {
+//        return dataCadastro;
+//    }
+//
+//    public void setDataCadastro(LocalDate dataCadastro) {
+//        this.dataCadastro = dataCadastro;
+//    }
+//
+//    public String getCategoria() {
+//        return categoria;
+//    }
+//
+//    public void setCategoria(String categoria) {
+//        this.categoria = categoria;
+//    }
 }
