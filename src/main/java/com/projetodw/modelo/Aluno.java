@@ -6,8 +6,7 @@ import java.time.LocalDate;
 @Entity
 public class Aluno
 {
-    @Id
-    private Long matricula;
+    private Long Id;
     private String nome;
     private String email;
 
@@ -23,8 +22,10 @@ public class Aluno
     }
 
     // ********* Métodos do Tipo Get *********
-
-    public Long getMatricula() { return matricula; }
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="Id")
+    public Long getId() { return Id; }
 
     public String getNome() {
         return nome;
@@ -37,7 +38,7 @@ public class Aluno
 
     // ********* Métodos do Tipo Set *********
 
-    public void setMatricula(Long matricula) {this.matricula = matricula;}
+    public void setId(Long Id) {this.Id = Id;}
 
     public void setNome(String nome) {
         this.nome = nome;

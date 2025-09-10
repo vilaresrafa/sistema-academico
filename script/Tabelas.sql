@@ -1,13 +1,3 @@
-https://dev.mysql.com/downloads/
-
-Download MySQL Community Server
-
-Últimas versões:
-- 5.5
-- 5.6
-- 5.7
-- 8.0 (atual)
-
 DROP TABLE if exists banco.aluno;
 
 CREATE TABLE banco.aluno (
@@ -27,8 +17,8 @@ CHARACTER SET utf8mb4;
 -- MySQL supports multiple Unicode character sets: utf8mb4 : A UTF-8 encoding of the
 -- Unicode character set using one to four bytes per character.
 
-INSERT INTO banco.PRODUTO(NOME, LANCE_MINIMO, DATA_CADASTRO)
-VALUES('TV SAMSUNG 40 POL', 2000, curdate());
+INSERT INTO banco.aluno(NOME, email)
+VALUES('Rafael Vilares', 'vilares@gmail.com');
 
-INSERT INTO banco.PRODUTO(NOME, LANCE_MINIMO, DATA_CADASTRO)
-VALUES('TV SAMSUNG 55 POL', 2500, curdate());
+INSERT INTO banco.aluno(NOME, email)
+VALUES('Nicole Espanha', 'espanha@gmail.com');

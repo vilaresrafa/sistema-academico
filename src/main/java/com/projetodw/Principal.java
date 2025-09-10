@@ -39,24 +39,27 @@ public class Principal
 
                     alunoDAO.inclui(umAluno);
 
-                    System.out.println('\n' + "Aluno " + umAluno.getNome() + " cadastrado com sucesso!");
+                    System.out.println('\n' + "Aluno " + umAluno.getId() + " cadastrado com sucesso!");
 
                     break;
                 }
 
                 case 2: {
                     int resposta = Console.readInt('\n' +
-                            "Digite o nome do aluno que você deseja alterar: ");
+                            "Digite o ID do aluno que você deseja alterar: ");
 
-                    try {
+                    try
+                    {
                         umAluno = alunoDAO.recuperaUmAluno(resposta);
-                    } catch (AlunoNaoEncontradoException e) {
-                        System.out.println('\n' + e.getMessage());
+                    }
+                    catch (AlunoNaoEncontradoException e)
+                    {   System.out.println('\n' + e.getMessage());
                         break;
                     }
 
                     System.out.println('\n' +
-                            "Nome = " + umAluno.getNome() +
+                            "Id = " + umAluno.getId() +
+                            "    Nome = " + umAluno.getNome() +
                             "    Email = " + umAluno.getEmail());
 
                     System.out.println('\n' + "O que você deseja alterar?");
@@ -78,7 +81,8 @@ public class Principal
 
                                 System.out.println('\n' +
                                         "Alteração de nome efetuada com sucesso!");
-                            } catch (AlunoNaoEncontradoException e) {
+                            }
+                            catch (AlunoNaoEncontradoException e) {
                                 System.out.println('\n' + e.getMessage());
                             }
 
@@ -115,22 +119,22 @@ public class Principal
 
                     try {
                         umAluno = alunoDAO.recuperaUmAluno(resposta);
-                    } catch (AlunoNaoEncontradoException e) {
+                    }
+                    catch (AlunoNaoEncontradoException e) {
                         System.out.println('\n' + e.getMessage());
                         break;
                     }
 
                     System.out.println('\n' +
-                            "Matricula = " + umAluno.getMatricula() +
-                            "    Nome = " + umAluno.getNome() +
-                            "    Email = " + umAluno.getEmail());
+                            "Id = " + umAluno.getId() +
+                            "    Nome = " + umAluno.getNome());
 
                     String resp = Console.readLine('\n' +
                             "Confirma a remoção do aluno?");
 
                     if (resp.equals("s")) {
                         try {
-                            alunoDAO.exclui(umAluno.getMatricula());
+                            alunoDAO.exclui(umAluno.getId());
                             System.out.println('\n' +
                                     "Aluno removido com sucesso!");
                         } catch (AlunoNaoEncontradoException e) {
@@ -148,7 +152,8 @@ public class Principal
 
                     for (Aluno aluno : alunos) {
                         System.out.println('\n' +
-                                "Nome = " + aluno.getNome() +
+                                "Id = " + aluno.getId() +
+                                "  Nome = " + aluno.getNome() +
                                 "  Email = " + aluno.getEmail());
                     }
 

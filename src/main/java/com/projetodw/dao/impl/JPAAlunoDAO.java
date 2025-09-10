@@ -25,11 +25,11 @@ public class JPAAlunoDAO implements AlunoDAO
             tx.begin();
             em.persist(umAluno);
 
-            System.out.println("nome = " + umAluno.getNome());
+            System.out.println("Id = " + umAluno.getId());
 
             tx.commit();
 
-            return umAluno.getMatricula();
+            return umAluno.getId();
         }
         catch(RuntimeException e)
         {	if (tx != null)
@@ -44,14 +44,14 @@ public class JPAAlunoDAO implements AlunoDAO
         }
     }
 
-    public Aluno recuperaUmAluno(long matricula) throws AlunoNaoEncontradoException
+    public Aluno recuperaUmAluno(long id) throws AlunoNaoEncontradoException
     {
         EntityManager em = null;
 
         try
         {
             em = FabricaDeEntityManager.criarEntityManager();
-            Aluno umAluno = em.find(Aluno.class, matricula);
+            Aluno umAluno = em.find(Aluno.class, id);
 
             if(umAluno == null){
                 throw new AlunoNaoEncontradoException("Aluno nao encontrado");
@@ -74,11 +74,11 @@ public class JPAAlunoDAO implements AlunoDAO
             tx = em.getTransaction();
             tx.begin();
 
-            aluno = em.find(Aluno.class, umAluno.getNome(), LockModeType.PESSIMISTIC_WRITE);
+            aluno = em.find(Aluno.class, umAluno.getId(), LockModeType.PESSIMISTIC_WRITE);
             if(aluno == null){
                 tx.rollback();
                 throw new AlunoNaoEncontradoException(
-                        "Aluno com nome = " + umAluno.getNome() + " nao encontrado");
+                        "Aluno com Id = " + umAluno.getId() + " nao encontrado");
             }
             em.merge(umAluno);
 
@@ -95,7 +95,7 @@ public class JPAAlunoDAO implements AlunoDAO
         }
     }
 
-    public void exclui(long matricula) throws AlunoNaoEncontradoException
+    public void exclui(long id) throws AlunoNaoEncontradoException
     {
         EntityManager em = null;
         EntityTransaction tx = null;
@@ -106,7 +106,7 @@ public class JPAAlunoDAO implements AlunoDAO
             tx = em.getTransaction();
             tx.begin();
 
-            Aluno aluno = em.find(Aluno.class, matricula);
+            Aluno aluno = em.find(Aluno.class, id);
 
             if(aluno == null)
             {
