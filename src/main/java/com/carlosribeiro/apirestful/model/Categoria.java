@@ -1,13 +1,14 @@
 package com.carlosribeiro.apirestful.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @NoArgsConstructor
 @Getter
@@ -22,8 +23,13 @@ public class Categoria {
     private String nome;
     private String slug;
 
+    @JsonIgnore
+    @OneToMany(mappedBy = "categoria")
+    private List<Produto> produtos;
+
     public Categoria(String nome, String slug) {
         this.nome = nome;
         this.slug = slug;
+        this.produtos = new ArrayList<>();
     }
 }

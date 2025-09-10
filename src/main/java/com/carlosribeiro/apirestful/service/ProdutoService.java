@@ -21,7 +21,7 @@ public class ProdutoService {
 //    }
 
     public List<Produto> recuperarProdutos() {
-        return produtoRepository.findAll();
+        return produtoRepository.recuperarProdutos();
     }
 
     public Produto cadastrarProduto(Produto produto) {
@@ -53,7 +53,7 @@ public class ProdutoService {
     }
 
     public Produto recuperarProdutoPorId(Long id) {
-        return produtoRepository.findById(id)
+        return produtoRepository.recuperarProdutoPorIdComCategoria(id)
             .orElseThrow(() -> new EntidadeNaoEncontradaException(
                 "Produto com id = " + id + " não encontrado."));
     }

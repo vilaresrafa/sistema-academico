@@ -26,7 +26,7 @@ public class Produto {
     private int qtdEstoque;
     private BigDecimal preco;
     private LocalDate dataCadastro;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Categoria categoria;
 
 //    public Produto() {

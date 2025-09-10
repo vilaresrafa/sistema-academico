@@ -2,6 +2,7 @@ package com.carlosribeiro.apirestful.controller;
 
 import com.carlosribeiro.apirestful.exception.EntidadeNaoEncontradaException;
 import com.carlosribeiro.apirestful.model.Produto;
+import com.carlosribeiro.apirestful.model.ProdutoDTO;
 import com.carlosribeiro.apirestful.service.ProdutoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -76,9 +77,20 @@ public class ProdutoController {
 //        }
 //    }
 
-    // Get para http://localhost:8080/produtos/10/2024
+    // Get para http://localhost:8080/produtos/1
     @GetMapping("{idProduto}")
-    public ResponseEntity<Produto> recuperarProdutoPorId(@PathVariable("idProduto") Long id) {
+    public ResponseEntity<ProdutoDTO> recuperarProdutoPorIdSemCategoria(@PathVariable("idProduto") Long id) {
+        Produto produto = produtoService.recuperarProdutoPorId(id);
+        ProdutoDTO produtoDTO = new ProdutoDTO(produto.getId(), produto.getNome());
+        return ResponseEntity
+            .ok()
+            .header("Content-type", "application/json")
+            .body(produtoDTO);
+    }
+
+    // Get para http://localhost:8080/produtos/1/categoria
+    @GetMapping("{idProduto}/categoria")
+    public ResponseEntity<Produto> recuperarProdutoPorIdComCategoria(@PathVariable("idProduto") Long id) {
         Produto produto = produtoService.recuperarProdutoPorId(id);
         return ResponseEntity
             .ok()
